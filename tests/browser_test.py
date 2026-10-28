@@ -9,7 +9,7 @@ with sync_playwright() as p:
     page.goto('http://127.0.0.1:8080');page.get_by_text('업무 현황 한눈에 보기').wait_for()
     page.screenshot(path=str(root/'work/home.png'),full_page=True)
     assert page.locator('.kpi strong').first.inner_text()=='48건'
-    cases=[('집합건물',{'kb':'Y','price':'Y'},{'seizure':'Y'},'R001','법무팀 사전 검토 필요'),('집합건물',{}, {},'R004','정보 보완 필요'),('건물',{'land':'Y'}, {},'R006','정보 보완 필요'),('토지',{'land':'Y'}, {},'R099','담보평가 진행 가능')]
+    cases=[('집합건물',{'kb':'Y','price':'Y'},{'seizure':'Y'},'R001','준법지원팀 사전 검토 필요'),('집합건물',{}, {},'R004','정보 보완 필요'),('건물',{'land':'Y'}, {},'R006','정보 보완 필요'),('토지',{'land':'Y'}, {},'R099','담보평가 진행 가능')]
     for ty,public,rights,rid,title in cases:
         page.locator('#new').click();page.locator(f'[data-type="{ty}"]').click();page.locator('#next').click()
         page.locator('#address').fill('서울시 ○○구 ○○동 *-')
