@@ -1,0 +1,35 @@
+검증일: 2026-10-28 (한국시간)
+환경: Linux / Python 3.12 / Node 24 / 시스템 Chromium / Python Playwright
+
+PASS: Rule 및 로그·키워드 검색 단위 테스트 8개
+- 집합건물 KB=Y, 공동주택가격=Y, 압류=Y → 법무팀 검토 필요 / R001
+- 집합건물 KB=N, 공동주택가격=N, 압류=N → 보완 필요 / R004
+- 건물 토지이용계획=Y, 건축물대장=N → 보완 필요 / R006
+- 토지 토지이용계획=Y, 특이 권리 없음 → 진행 가능 / R099
+- 권리관계 우선순위, 전세권/기타 권리, 선순위 금액 무관 검증
+- localStorage 로그 키 6개 제한, 주소 제외 검증
+- 가압류 키워드 검색 검증
+
+PASS: Python 구문 컴파일 및 모든 JS 구문 검사 / npm run build
+PASS: python server.py 실행 / http://127.0.0.1:8080 HTTP 200
+PASS: Chromium 브라우저에서 위 4개 사례를 UI로 직접 입력
+PASS: 마스킹 주소가 단계 변경 시 그대로 유지됨
+PASS: localStorage 로그 4건 및 저장 키 6개 확인
+PASS: 실제 로그 대시보드 총 4건, 법무 이관율 25%, 예상 사전 필터율 75%
+PASS: 새로고침 후 실제 로그 유지
+PASS: 미연결 시 Local Keyword Search 표시 및 검색 결과
+PASS: 진행 가능 CTA의 전자결재 미구현 토스트
+PASS: Rule 정보 7행
+PASS: 1440px 및 1024px 화면, 1024px 가로 넘침 없음
+PASS: 브라우저 JavaScript 페이지 오류 0개
+
+BGE: 선택적 FastAPI 서버 실행 성공.
+GET /health → HTTP 200, ok:false (BGE_MODEL_PATH 미지정)
+POST /search → HTTP 503 (모델 없음)
+실제 모델/원문 문서가 없으므로 의미 검색 및 C003/C010/C014/C018/C015/K002 순위는 미검증.
+BGE 의존성 중 sentence-transformers는 모델 미제공으로 설치하지 않았습니다.
+
+제한:
+Windows 배치 파일은 생성했으나 Linux 환경이므로 Windows 더블클릭 실제 실행은 미검증.
+기존 담보평가 프로젝트 및 Excel이 연결된 작업 공간에 없어 원문 재사용·대조는 미수행.
+브라우저 테스트는 격리된 브라우저 프로필을 사용하며 사용자의 실제 브라우저에 테스트 로그를 남기지 않음.

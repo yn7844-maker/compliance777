@@ -1,0 +1,92 @@
+[
+  {
+    "id": "DEMO-001",
+    "kind": "knowledge",
+    "title": "집합건물은 3단계 조회 행동만 바뀝니다",
+    "target_type": "집합건물",
+    "result": "pass",
+    "rule_id": "R099",
+    "content": "전체 1~9단계 흐름은 동일합니다. 3단계에서 토지이용계획·건축물대장 대신 KB시세·공동주택가격을 확인합니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-002",
+    "kind": "case",
+    "title": "집합건물에 압류가 확인된 예시",
+    "target_type": "집합건물",
+    "result": "legal",
+    "rule_id": "R001",
+    "content": "KB시세와 공동주택가격을 확인했더라도 압류가 있으면 법무팀 검토 필요입니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-003",
+    "kind": "case",
+    "title": "가압류가 있는 건물 예시",
+    "target_type": "건물",
+    "result": "legal",
+    "rule_id": "R002",
+    "content": "토지이용계획과 건축물대장을 확인한 건물이라도 가압류가 있으면 법무팀 검토 대상으로 분류합니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-004",
+    "kind": "case",
+    "title": "선순위 채권이 있는 일반 예시",
+    "target_type": "집합건물",
+    "result": "pass",
+    "rule_id": "R099",
+    "content": "공개정보를 확인했고 특이 권리가 없는 경우입니다. 선순위 채권 여부와 금액만으로 별도 임계값 판정하지 않습니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-005",
+    "kind": "case",
+    "title": "건축물대장이 미확인인 예시",
+    "target_type": "건물",
+    "result": "supplement",
+    "rule_id": "R006",
+    "content": "토지이용계획은 확인했으나 건축물대장이 미확인이면 보완 필요입니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-006",
+    "kind": "knowledge",
+    "title": "개인정보 최소화 및 사전체크 범위",
+    "target_type": "전체",
+    "result": "pass",
+    "rule_id": "R099",
+    "content": "주소는 마스킹 상태 그대로 입력할 수 있으며 로그에 저장하지 않습니다. 최종 담보가액 및 법적 판단을 대체하지 않습니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-007",
+    "kind": "case",
+    "title": "집합건물 시세 정보가 모두 미확인인 예시",
+    "target_type": "집합건물",
+    "result": "supplement",
+    "rule_id": "R004",
+    "content": "KB시세 미확인 및 공동주택가격 미확인이면 정보 보완이 필요합니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-008",
+    "kind": "case",
+    "title": "토지이용계획 확인이 필요한 예시",
+    "target_type": "토지",
+    "result": "supplement",
+    "rule_id": "R005",
+    "content": "토지이용계획 미확인이면 보완 필요입니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  },
+  {
+    "id": "DEMO-009",
+    "kind": "knowledge",
+    "title": "전세권 및 기타 특이 권리 확인",
+    "target_type": "전체",
+    "result": "legal",
+    "rule_id": "R003",
+    "content": "전세권 또는 기타 특이 권리가 있으면 법무팀 검토가 필요합니다.",
+    "source": "사용자 제공 요구사항 기반 예시 · 실제 사례 아님"
+  }
+]
