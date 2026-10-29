@@ -30,11 +30,11 @@ with sync_playwright() as p:
     page.locator('#dashboard').click();assert page.locator('.kpi strong').first.inner_text()=='4건'
     assert '75.0%' in page.locator('.notice').inner_text()
     page.screenshot(path=str(root/'work/dashboard.png'),full_page=True)
-    page.reload();page.locator('[data-page="운영 대시보드"]').click();assert page.locator('.kpi strong').first.inner_text()=='4건'
+    page.reload();page.locator('[data-page="준법지원팀"]').click();page.locator('[data-section="운영 대시보드"]').click();assert page.locator('.kpi strong').first.inner_text()=='4건'
     page.locator('[data-page="사례검색"]').click();page.locator('#query').fill('가압류');page.locator('#search-form button').click();page.wait_for_function("document.querySelector('#result-count').textContent.includes('1건')")
     assert page.locator('#search-mode').inner_text()=='로컬 키워드 검색'
     assert '가압류' in page.locator('#search-results').inner_text()
-    page.locator('[data-page="판정 기준"]').click();assert page.locator('tbody tr').count()==7
+    page.locator('[data-page="사례검색"]').click();page.locator('[data-section="판정 기준"]').click();assert page.locator('tbody tr').count()==7
     page.locator('[data-page="홈"]').click();page.set_viewport_size({'width':1024,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=window.innerWidth')
     page.screenshot(path=str(root/'work/home-1024.png'),full_page=True)
     assert not errors,errors

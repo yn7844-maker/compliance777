@@ -44,3 +44,6 @@ code,textarea{font-family:inherit}
 @media(max-width:800px){.review-kpis{grid-template-columns:repeat(2,1fr)}.review-toolbar{flex-wrap:wrap}.review-toolbar input{flex:1 0 60%}.review-toolbar select{width:100%}.review-workspace{gap:0}}
 
 #sidebar{overflow-y:auto}.sidebar-bottom{flex-shrink:0;margin-top:auto;padding-top:24px}
+
+/* 카테고리 내 하위 메뉴 */
+#section-nav{max-width:1640px;margin:0 auto}#section-nav:empty{display:none}.section-tabs{display:flex;gap:5px;background:#fff;border:1px solid #cbd5e1;border-radius:10px;margin:24px 32px 22px;padding:6px;box-shadow:0 2px 5px #17233805}.section-tabs button{display:block;flex:0 1 220px;text-align:center;padding:12px 22px;border:1px solid transparent;border-radius:7px;font-size:14px;color:#526176;background:transparent}.section-tabs button.selected{color:#1d4ed8;background:#eaf2ff;border-color:#b9cef1;font-weight:700}.section-tabs button:hover{background:#f0f5fc}#section-nav:not(:empty)+main{padding-top:0}@media(min-width:1550px){.section-tabs{margin-left:40px;margin-right:40px}}@media(max-width:1150px){.section-tabs{margin-left:23px;margin-right:23px}}@media(max-width:800px){.section-tabs{margin:20px}.section-tabs button{flex:1;padding:11px 8px;font-size:13px}}
