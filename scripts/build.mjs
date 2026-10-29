@@ -1,11 +1,14 @@
-import {readFile,rm,mkdir,copyFile,cp,readdir} from 'node:fs/promises';
+import {readFile,rm,mkdir,cp,readdir,writeFile} from 'node:fs/promises';
 import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {appVersion} from './version.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 for(const name of ['rules.json','docs.json'])JSON.parse(await readFile(path.join(root,'data',name),'utf8'));
 for(const name of await readdir(path.join(root,'js')))if(name.endsWith('.js'))execFileSync(process.execPath,['--check',path.join(root,'js',name)],{stdio:'inherit'});
 const out=path.join(root,'dist');await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
-await copyFile(path.join(root,'index.html'),path.join(out,'index.html'));
+const version=await appVersion(root);
+await writeFile(path.join(out,'index.html'),(await readFile(path.join(root,'index.html'),'utf8')).replace('__APP_VERSION__',version));
+await writeFile(path.join(out,'version.json'),JSON.stringify({version})+'\n');
 for(const name of ['css','js','data','fonts'])await cp(path.join(root,name),path.join(out,name),{recursive:true});
 console.log('Build OK: dist/ · Node.js only · no CDN or runtime dependencies');

@@ -1,3 +1,4 @@
+import {startUpdateNotifier} from './updates.js';
 import {validateInput,rightsFields,publicFields,missingPublicInfo} from './validation.js';
 import {documentFields,documentText,copyText} from './document.js';
 import {renderRequestForm,renderReviewWorkspace,resubmitRequest,purposes} from './reviews.js';
@@ -58,3 +59,5 @@ function openRequestMail(item){const cfg=readMailSettings();if(!cfg.recipient){g
 function openSupplementDraft(item,recipient){const cfg=readMailSettings();try{const mail=createSupplementMail(item,{...cfg,recipient});if(cfg.method==='web')window.open(mail.url,'_blank','noopener,noreferrer');else window.location.href=mail.url;toast('보완 요청 작성창에서 수신자와 내용을 확인하고 직접 발송하세요.');}catch{toast('유효한 담당자 업무 이메일을 입력하세요.');}}
 
 function resumeRequest(item){const v={...fresh(),type:item.target_type,...item.inputs};model=v;step=2;result=null;saved=false;formErrors=[];requestToken=crypto.randomUUID();model.resubmitId=item.id;go('사전체크');toast('보완 내용을 확인하고 주소·담당자 정보를 다시 입력하세요. 재판정 후 같은 건으로 재제출할 수 있습니다.');}
+
+startUpdateNotifier();

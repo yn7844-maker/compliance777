@@ -8,8 +8,31 @@
     {
       "source": "/(.*)",
       "headers": [
-        {"key": "X-Content-Type-Options", "value": "nosniff"},
-        {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/version.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "no-store"
+        },
+        {
+          "key": "Vercel-CDN-Cache-Control",
+          "value": "no-store"
+        }
       ]
     }
   ]
