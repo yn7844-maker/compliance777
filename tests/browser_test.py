@@ -6,7 +6,7 @@ with sync_playwright() as p:
     browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1440,'height':1100})
     errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto('http://127.0.0.1:8080');page.get_by_text('업무 현황 한눈에 보기').wait_for()
+    page.goto('http://127.0.0.1:8080');page.get_by_text('사전체크 집계').wait_for()
     page.screenshot(path=str(root/'work/home.png'),full_page=True)
     assert page.locator('.kpi strong').first.inner_text()=='48건'
     cases=[('집합건물',{'kb':'Y','price':'Y'},{'seizure':'Y'},'R001','준법지원팀 사전 검토 필요'),('집합건물',{}, {},'R004','정보 보완 필요'),('건물',{'land':'Y'}, {},'R006','정보 보완 필요'),('토지',{'land':'Y'}, {},'R099','담보평가 진행 가능')]
@@ -32,9 +32,9 @@ with sync_playwright() as p:
     page.screenshot(path=str(root/'work/dashboard.png'),full_page=True)
     page.reload();page.locator('[data-page="운영 대시보드"]').click();assert page.locator('.kpi strong').first.inner_text()=='4건'
     page.locator('[data-page="사례검색"]').click();page.locator('#query').fill('가압류');page.locator('#search-form button').click();page.wait_for_function("document.querySelector('#result-count').textContent.includes('1건')")
-    assert page.locator('#search-mode').inner_text()=='Local Keyword Search'
+    assert page.locator('#search-mode').inner_text()=='로컬 키워드 검색'
     assert '가압류' in page.locator('#search-results').inner_text()
-    page.locator('[data-page="Rule 정보"]').click();assert page.locator('tbody tr').count()==7
+    page.locator('[data-page="판정 기준"]').click();assert page.locator('tbody tr').count()==7
     page.locator('[data-page="홈"]').click();page.set_viewport_size({'width':1024,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=window.innerWidth')
     page.screenshot(path=str(root/'work/home-1024.png'),full_page=True)
     assert not errors,errors
