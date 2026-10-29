@@ -11,3 +11,10 @@ export function createReviewMail(v,r,cfg){
  const url=cfg.method==='web'?'https://outlook.office.com/mail/deeplink/compose?'+new URLSearchParams({to:cfg.recipient,subject,body}).toString():`mailto:${encodeURIComponent(cfg.recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
  return {url,subject,body};
 }
+
+export function createRequestMail(item,cfg){
+ if(!validEmail(cfg.recipient))throw Error('수신 이메일을 설정하세요.');
+ const subject=`[담보평가 의뢰] ${item.target_type} · ${item.id}`;
+ const body=['준법지원팀 담당자님,','검토 요청 의뢰가 등록되었습니다.','',`접수번호: ${item.id}`,`의뢰구분: ${item.purpose}`,`물건유형: ${item.target_type}`,`사전체크 결과: ${item.result==='legal'?'준법지원팀 검토 필요':'진행 가능'}`,`적용 기준: ${item.rule_id} / ${item.rule_name}`,`판정 사유: ${item.reason}`,`처리 상태: ${item.status}`,'','의뢰 상세는 앱의 준법지원팀 메뉴에서 확인합니다.','현재 데모는 동일 브라우저에만 저장됩니다. 다른 직원에게 목록이 공유되지 않습니다.','주소·개인정보·채권금액·첨부파일은 포함하지 않았습니다.'].join('\r\n');
+ return {subject,body,url:cfg.method==='web'?'https://outlook.office.com/mail/deeplink/compose?'+new URLSearchParams({to:cfg.recipient,subject,body}).toString():`mailto:${encodeURIComponent(cfg.recipient)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`};
+}
