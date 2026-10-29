@@ -14,7 +14,9 @@ try:
   page.screenshot(path=str(root/'work/review-samples.png'),full_page=True)
   for width in [1440,1024]:
    page.set_viewport_size({'width':width,'height':1100});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  page.locator('#new').click();page.locator('[data-type="집합건물"]').click();page.locator('#next').click();page.locator('#address').fill('PRIVATE_ADDRESS');page.locator('[data-key="kb"][data-value="Y"]').click();page.locator('#next').click();page.locator('[data-key="seizure"][data-value="Y"]').click();page.locator('#next').click();page.locator('#result-action').click();page.get_by_role('heading',name='FC 의뢰서 작성').wait_for();page.locator('#request-confirm').check();page.locator('#request-submit').click()
+  page.locator('#new').click();page.locator('[data-type="집합건물"]').click();page.locator('#next').click();page.locator('#address').fill('PRIVATE_ADDRESS');page.locator('[data-key="kb"][data-value="Y"]').click();page.locator('#next').click();
+  for k in ['senior','seizure','provisional','lease','other']:page.locator(f'[data-key="{k}"][data-value="N"]').click()
+  page.locator('[data-key="seizure"][data-value="Y"]').click();page.locator('#rightsConfirmed').check();page.locator('#next').click();page.locator('#result-action').click();page.get_by_role('heading',name='준법지원팀 예외 검토 요청').wait_for();page.locator('#request-confirm').check();page.locator('#request-submit').click()
   rows=page.evaluate("JSON.parse(localStorage.getItem('collateral.precheck.requests.v1'))");assert len(rows)==1 and rows[0]['status']=='처리 전';assert 'PRIVATE_ADDRESS' not in str(rows)
   page.locator('[data-page="준법지원팀"]').click();page.get_by_role('heading',name='준법지원팀 의뢰 관리').wait_for()
   for status in ['확인 중','승인','거부']:

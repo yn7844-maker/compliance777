@@ -7,7 +7,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "test": "node tests/rules.test.js && node tests/mail.test.js && node tests/reviews.test.js",
+    "test": "node tests/rules.test.js && node tests/mail.test.js && node tests/reviews.test.js && node tests/flow.test.js",
     "build": "node scripts/build.mjs"
   }
 }

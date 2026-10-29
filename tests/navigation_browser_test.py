@@ -15,6 +15,8 @@ try:
   for width in [1440,1024]:
    page.set_viewport_size({'width':width,'height':1000});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   page.locator('[data-section="준법지원팀"]').click();page.locator('#review-sample').uncheck();assert page.locator('[data-section]').count()==2
-  page.locator('#new').click();page.locator('[data-type="토지"]').click();page.locator('#next').click();page.locator('[data-key="land"][data-value="Y"]').click();page.locator('#next').click();page.locator('#next').click();page.locator('#dashboard').click();assert page.locator('#sidebar .active').inner_text()=='준법지원팀';assert page.locator('[data-section="운영 대시보드"]').get_attribute('aria-pressed')=='true'
+  page.locator('#new').click();page.locator('[data-type="토지"]').click();page.locator('#next').click();page.locator('#address').fill('서울시 ○○구 ○○동 *-');page.locator('[data-key="land"][data-value="Y"]').click();page.locator('#next').click();
+  for k in ['senior','seizure','provisional','lease','other']:page.locator(f'[data-key="{k}"][data-value="N"]').click()
+  page.locator('#rightsConfirmed').check();page.locator('#next').click();page.locator('#dashboard').click();assert page.locator('#sidebar .active').inner_text()=='준법지원팀';assert page.locator('[data-section="운영 대시보드"]').get_attribute('aria-pressed')=='true'
   page.locator('[data-page="설정"]').click();assert page.locator('#section-nav').inner_text()=='';assert not errors,errors;b.close();print('PASS: six menus/order, nested search/rules and team/dashboard, active parent, tab preservation after redraw, result CTA, 1440/1024px, no JS errors.')
 finally:server.shutdown()

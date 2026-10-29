@@ -1,7 +1,7 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
 import {evaluate,makeLog,saveLog,readLogs,LOG_KEY} from '../js/rules.js';import {keyword} from '../js/search.js';
 const rules=JSON.parse(fs.readFileSync(new URL('../data/rules.json',import.meta.url))),docs=JSON.parse(fs.readFileSync(new URL('../data/docs.json',import.meta.url)));
-const base={type:'토지',land:'Y',building:'Y',kb:'Y',price:'Y',seizure:'N',provisional:'N',lease:'N',other:'N'};
+const base={address:'서울시 ○○구 ○○동 *-',senior:'N',rightsConfirmed:true,type:'토지',land:'Y',building:'Y',kb:'Y',price:'Y',seizure:'N',provisional:'N',lease:'N',other:'N'};
 for(const [name,v,id] of [['집합건물 압류',{type:'집합건물',seizure:'Y'},'R001'],['집합건물 공개정보 부족',{type:'집합건물',kb:'N',price:'N'},'R004'],['건축물대장 미확인',{type:'건물',building:'N'},'R006'],['일반 토지',{},'R099']])test(name,()=>assert.equal(evaluate({...base,...v},rules).id,id));
 test('준법지원팀 검토 우선 및 추가 권리',()=>{assert.equal(evaluate({...base,land:'N',provisional:'Y'},rules).id,'R002');for(const k of ['lease','other'])assert.equal(evaluate({...base,[k]:'Y'},rules).id,'R003');});
 test('집합건물 한 조회만 확인 및 선순위 금액 무관',()=>{for(const amount of ['0','999999999999'])assert.equal(evaluate({...base,type:'집합건물',kb:'N',price:'Y',senior:'Y',amount},rules).id,'R099');});

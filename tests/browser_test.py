@@ -16,13 +16,14 @@ with sync_playwright() as p:
         for k,v in public.items():page.locator(f'[data-key="{k}"][data-value="{v}"]').click()
         assert page.locator('#address').input_value()=='서울시 ○○구 ○○동 *-'
         page.locator('#next').click()
+        for k in ['senior','seizure','provisional','lease','other']:page.locator(f'[data-key="{k}"][data-value="N"]').click()
         for k,v in rights.items():page.locator(f'[data-key="{k}"][data-value="{v}"]').click()
-        page.locator('#next').click();page.get_by_role('heading',name=title,exact=True).wait_for()
+        page.locator('#rightsConfirmed').check();page.locator('#next').click();page.get_by_role('heading',name=title,exact=True).wait_for()
         assert page.locator('dd code').inner_text()==rid
         page.locator('#related .doc').first.wait_for()
         print('Browser Rule PASS',rid)
         if rid=='R099':
-            page.locator('#result-action').click();page.get_by_role('heading',name='FC 의뢰서 작성').wait_for();page.locator('#request-cancel').click()
+            page.locator('#result-action').click();assert page.locator('#request-form').count()==0
             page.screenshot(path=str(root/'work/result.png'),full_page=True)
     logs=page.evaluate("JSON.parse(localStorage.getItem('collateral.precheck.logs.v1'))")
     assert len(logs)==4 and all(set(l)=={'timestamp','target_type','result','rule_id','rule_name','reason'} for l in logs)
