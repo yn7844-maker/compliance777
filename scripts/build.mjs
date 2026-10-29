@@ -7,5 +7,5 @@ for(const name of ['rules.json','docs.json'])JSON.parse(await readFile(path.join
 for(const name of await readdir(path.join(root,'js')))if(name.endsWith('.js'))execFileSync(process.execPath,['--check',path.join(root,'js',name)],{stdio:'inherit'});
 const out=path.join(root,'dist');await rm(out,{recursive:true,force:true});await mkdir(out,{recursive:true});
 await copyFile(path.join(root,'index.html'),path.join(out,'index.html'));
-for(const name of ['css','js','data'])await cp(path.join(root,name),path.join(out,name),{recursive:true});
+for(const name of ['css','js','data','fonts'])await cp(path.join(root,name),path.join(out,name),{recursive:true});
 console.log('Build OK: dist/ · Node.js only · no CDN or runtime dependencies');

@@ -55,3 +55,8 @@ Rule, 단계형 사전체크, 로컬 로그, 홈/운영 대시보드, 사례검�
 주소·채권금액·첨부파일은 포함하지 않으며, 발송 여부는 앱에서 확인하지 않습니다.
 자동 발송은 Microsoft Graph의 위임 Mail.Send 또는 Power Automate 및 회사 관리자의 연결 승인이 필요합니다.
 자격증명이나 토큰을 정적 웹 소스에 넣으면 안 됩니다.
+
+## 글꼴
+
+Pretendard 1.3.9 가변 웹폰트를 fonts/에서 직접 제공합니다. 외부 CDN 요청 없이 동작합니다.
+배포 라이선스: fonts/OFL.txt (SIL Open Font License 1.1).

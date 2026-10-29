@@ -7,10 +7,10 @@ class Handler(SimpleHTTPRequestHandler):
     def do_GET(self):
         from urllib.parse import unquote, urlsplit
         path=unquote(urlsplit(self.path).path)
-        if path!='/' and not (path=='/index.html' or path.startswith(('/css/','/js/','/data/'))):
+        if path!='/' and not (path=='/index.html' or path.startswith(('/css/','/js/','/data/','/fonts/'))):
             self.send_error(404);return
         resolved=(ROOT/path.lstrip('/')).resolve()
-        if not resolved.is_relative_to(ROOT) or (path not in ['/', '/index.html'] and not any(resolved.is_relative_to(ROOT/d) for d in ['css','js','data'])) or (path!='/' and not resolved.is_file()):
+        if not resolved.is_relative_to(ROOT) or (path not in ['/', '/index.html'] and not any(resolved.is_relative_to(ROOT/d) for d in ['css','js','data','fonts'])) or (path!='/' and not resolved.is_file()):
             self.send_error(404);return
         super().do_GET()
     def end_headers(self):
