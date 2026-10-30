@@ -66,8 +66,8 @@ FC 정보 입력 → 입력 검증 → Rule에 따른 적격 판단 → 정식 �
 
 ## BGE 및 글꼴
 
-BGE는 관련 문서 검색용이며 Rule 판정에 사용하지 않습니다. 웹 버전은 로컬 키워드 검색을 사용합니다.
-로컬 실행 시 선택적인 python_backend 서버를 연결할 수 있으며 미연결 시에도 앱은 동작합니다.
+BGE-M3는 관련 문서 검색용이며 Rule 판정에 사용하지 않습니다. 로컬은 Python 서버에 직접, Vercel은 `/api/bge` 서버 함수를 통해 별도 HTTPS BGE 서버에 연결합니다. 미설정·미연결 시 로컬 키워드 검색을 사용합니다.
+모델 설치, TXT/MD/JSON 문서 가져오기, 로컬 실행 및 Vercel 환경변수 설정은 [BGE-M3 연결 안내](python_backend/README.md)를 참고하세요. 생성형 AI API는 사용하지 않습니다.
 Pretendard 1.3.9 가변 웹폰트를 fonts/에서 자체 제공합니다. 라이선스는 fonts/OFL.txt입니다.
 
 ## 추가 브라우저 검증

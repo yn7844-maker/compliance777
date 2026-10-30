@@ -35,5 +35,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/bge/*.js": {
+      "maxDuration": 30
+    }
+  }
 }

@@ -84,3 +84,12 @@ Node.js가 있는 경우 npm test, npm run build.
 - 예외 검토 결과만 준법지원팀에 신규 등록. 보완 요청 상태와 같은 접수번호 재제출 제공.
 - 보완 메일은 담당자 주소를 입력해 Outlook 작성창에서 직접 발송. 자동 발송 안 함.
 - 상세 설명과 최신 검증 명령은 README.md를 참고.
+
+
+[BGE-M3 local semantic search]
+1. Run setup_bge.bat once (Python 3.10+, Internet, multi-GB disk space required).
+2. Run start_bge_offline.bat and keep the window open.
+3. Run start_dashboard.bat.
+4. Open Settings and click connection check. Use local http://127.0.0.1:8080.
+5. See python_backend/README.md for document import and Vercel integration.
+The deployed Vercel URL cannot connect to this local-only server.
