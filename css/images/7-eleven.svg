@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1446 286" role="img" aria-labelledby="title">
+<title id="title">7-ELEVEN</title>
+<path fill="#ff6b00" d="M6 14h162c-31 14-57 36-77 65H6z"/>
+<path fill="#ed002b" d="M200 14v65c-43 24-65 59-65 106v88H70v-88c0-79 44-137 130-171z"/>
+<g fill="#007e58">
+<path d="M200 115h65v49h-65zM290 14h146v53h-75v48h75v49h-75v58h75v51H290zM461 14h71v203h75v56H461zM632 14h145v53h-74v48h74v49h-74v58h74v51H632zM798 14h72l25 155 5 40h3l5-40 24-155h72l-59 259h-87zM1025 14h145v53h-74v48h74v49h-74v58h74v51h-145zM1195 14h78v14l-12 18 5 3c16-24 36-35 66-35 44 0 63 29 63 83v176h-71V96c0-17-8-24-27-24-20 0-30 13-30 36v165h-72z"/>
+<circle cx="1422" cy="258" r="14" fill="none" stroke="#007e58" stroke-width="3"/>
+<path d="M1417 267v-18h6c4 0 6 2 6 5 0 2-1 4-4 5l5 8h-4l-5-7h-1v7zm3-10h3c2 0 3-1 3-3s-1-3-3-3h-3z"/>
+</g></svg>
